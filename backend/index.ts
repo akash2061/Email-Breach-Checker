@@ -1,20 +1,30 @@
-import express from 'express';
-import mongoose from 'mongoose';
+import express from "express";
+import connectDB from "./config/db";
+import cors from "cors";
+import authRoutes from "./routes/auth";
+import { errorHandler } from './middleware/globalErrorhandling';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-// MongoDB connection string
-const MONGO_URI = 'mongodb://localhost:27017/email_breach';
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-mongoose.connect(MONGO_URI)
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log('MongoDB Connection Error:', err));
-
+// Basic route (should come first)
 app.get('/', (req, res) => {
     res.send('Backend is running!');
 });
 
+// API Routes
+app.use("/api/auth", authRoutes);
+
+// Error handling middleware (MUST be last)
+app.use(errorHandler);
+
+// MongoDB connection
+connectDB();
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
