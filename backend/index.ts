@@ -6,22 +6,17 @@ import { errorHandler } from './middleware/globalErrorhandling';
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Basic route (should come first)
 app.get('/', (req, res) => {
     res.send('Backend is running!');
 });
 
-// API Routes
 app.use("/api/auth", authRoutes);
 
-// Error handling middleware (MUST be last)
 app.use(errorHandler);
 
-// MongoDB connection
 connectDB();
 
 const PORT = process.env.PORT || 5000;
