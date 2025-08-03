@@ -33,7 +33,7 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
 
         const token = jwt.sign(
             { userId: newUser._id, email: newUser.email },
-            process.env.JWT_SECRET || "Foo@12345",
+            process.env.JWT_SECRET || "fallback-secret-key",
             { expiresIn: "24h" }
         );
 
@@ -78,7 +78,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
         const token = jwt.sign(
             { userId: existingUser._id, email: existingUser.email },
-            process.env.JWT_SECRET || "Foo@12345",
+            process.env.JWT_SECRET || "fallback-secret-key",
             { expiresIn: "24h" }
         );
 
