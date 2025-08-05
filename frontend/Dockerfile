@@ -1,15 +1,15 @@
-FROM node:18-alpine AS builder
+FROM node:latest AS builder
 
 WORKDIR /app
 
-COPY frontend/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY frontend/ ./
+COPY . ./
 
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:latest
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 

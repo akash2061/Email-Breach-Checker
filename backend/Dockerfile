@@ -1,14 +1,12 @@
-FROM node:18-alpine
+FROM node:latest
 
 WORKDIR /app
 
-COPY backend/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY backend/ ./
+COPY . ./
 
-RUN npm run build
-
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["npm", "start"]
