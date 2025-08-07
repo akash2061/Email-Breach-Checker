@@ -76,16 +76,6 @@ temp/
 .idea/
 *.swp
 *.swo
-*~
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
 # Git
 .git
@@ -94,18 +84,3 @@ Thumbs.db
 # Docker
 Dockerfile
 .dockerignore
-
-# Development files
-*.md
-.prettierrc
-.eslintrc*
-tsconfig.json
-
-# Test files
-__tests__/
-*.test.js
-*.test.ts
-*.spec.js
-*.spec.ts
-test/
-tests/

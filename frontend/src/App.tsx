@@ -134,6 +134,8 @@ export default function App() {
         ? { email: authForm.email, password: authForm.password }
         : authForm
 
+      console.log('Auth request:', { endpoint: `${config.apiBaseUrl}${endpoint}`, payload })
+
       const response = await fetch(`${config.apiBaseUrl}${endpoint}`, {
         method: 'POST',
         headers: {
@@ -206,6 +208,8 @@ export default function App() {
       if (token) {
         headers.Authorization = `Bearer ${token}`
       }
+
+      console.log("Checking email endpoint:", `${config.apiBaseUrl}/api/auth/email-breach`);
 
       const response = await fetch(`${config.apiBaseUrl}/api/auth/email-breach`, {
         method: "POST",
